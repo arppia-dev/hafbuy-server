@@ -69,7 +69,8 @@ export default factories.createCoreService(
         .service('email')
         .sendTemplatedEmail(
           {
-            to: 'alexis.sniffer@gmail.com',
+            to: data._billing.email,
+            cc: 'alexis.sniffer@gmail.com',
             from: 'no-reply@hafbuy.net',
             replyTo: 'no-reply@hafbuy.net',
             attachments: [],
@@ -80,27 +81,6 @@ export default factories.createCoreService(
             ...order,
           }
         )
-
-      /* await strapi.plugins['email-designer'].services.email.send({
-        templateId: 1,
-        to: 'alexis.sniffer@gmail.com',
-        from: 'no-reply@hafbuy.net',
-        replyTo: 'no-reply@hafbuy.net',
-        data: {
-          ...order,
-          ...data,
-        },
-      })*/
-
-      /*await strapi.plugins['email'].services.email.send({
-        to: 'luis.martinez0192@gmail.com',
-        from: 'Hafbuy <no-reply@hafbuy.net>',
-        cc: 'alexis.sniffer@gmail.com',
-        bcc: '',
-        replyTo: 'no-reply@hafbuy.net',
-        subject: `Prueba`,
-        html: `<p>prueba</p>`,
-      })*/
 
       return order
     },
