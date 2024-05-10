@@ -64,23 +64,28 @@ export default factories.createCoreService(
         })
       }
 
-      await strapi
-        .plugin('email-designer')
-        .service('email')
-        .sendTemplatedEmail(
-          {
-            to: data._billing.email,
-            cc: 'alexis.sniffer@gmail.com',
-            from: 'no-reply@hafbuy.net',
-            replyTo: 'no-reply@hafbuy.net',
-            attachments: [],
-          },
-          { templateReferenceId: 1 },
-          {
-            ...data,
-            ...order,
-          }
-        )
+      try {
+        await strapi
+          .plugin('email-designer')
+          .service('email')
+          .sendTemplatedEmail(
+            {
+              to: data._billing.email,
+              from: 'no-reply@hafbuy.net',
+              replyTo: 'no-reply@hafbuy.net',
+              attachments: [],
+            },
+            {
+              templateReferenceId: 1,
+            },
+            {
+              ...data,
+              ...order,
+            }
+          )
+      } catch (err) {
+        strapi.log.debug('📺: ', err)
+      }
 
       return order
     },
