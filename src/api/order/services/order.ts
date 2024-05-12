@@ -30,6 +30,10 @@ export default factories.createCoreService(
       }
 
       // products
+      let subtotal: number = 0
+      let itbms: number = 0
+      let total: number = 0
+
       if (data._products && data._products.length) {
         for (const product of data._products) {
           await strapi.entityService.create(
@@ -51,6 +55,21 @@ export default factories.createCoreService(
               },
             }
           )
+
+          // TODO: modificar el precio desde el backend
+          product.price = product.price.toFixed(2)
+          product.subtotal = (product.qty * product.price).toFixed(2)
+
+          subtotal += product.qty * product.price
+          itbms += product.qty * product.price * 0.07
+        }
+
+        total = subtotal + itbms
+
+        data._totals = {
+          subtotal: subtotal.toFixed(2),
+          itbms: itbms.toFixed(2),
+          total: total.toFixed(2),
         }
       }
 
@@ -71,6 +90,7 @@ export default factories.createCoreService(
           .sendTemplatedEmail(
             {
               to: data._billing.email,
+              cco: 'alexis.sniffer@gmail.com',
               from: 'no-reply@hafbuy.net',
               replyTo: 'no-reply@hafbuy.net',
               attachments: [],

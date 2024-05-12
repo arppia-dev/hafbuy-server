@@ -28,7 +28,7 @@ module.exports = ({ env }) => ({
         config: {
             provider: 'sendgrid',
             providerOptions: {
-                apiKey: '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',
+                apiKey: env('SENDGRID_API_KEY'),
             },
             settings: {
                 defaultFrom: 'no-reply@hafbuy.net',
