@@ -25,6 +25,9 @@ exports.default = strapi_1.factories.createCoreService('api::order.order', ({ st
             });
         }
         // products
+        let subtotal = 0;
+        let itbms = 0;
+        let total = 0;
         if (data._products && data._products.length) {
             for (const product of data._products) {
                 await strapi.entityService.create('api::order-product.order-product', {
@@ -43,8 +46,17 @@ exports.default = strapi_1.factories.createCoreService('api::order.order', ({ st
                             : null,
                     },
                 });
-                product.subtotal = product.qty * product.price;
+                // TODO: modificar el precio desde el backend
+                product.subtotal = (product.qty * product.price).toFixed(2);
+                subtotal += product.qty * product.price;
+                itbms += product.qty * product.price * 0.07;
             }
+            total = subtotal + itbms;
+            data._totals = {
+                subtotal: subtotal.toFixed(2),
+                itbms: itbms.toFixed(2),
+                total: total.toFixed(2),
+            };
         }
         // payment
         if (data._payment) {
@@ -55,7 +67,6 @@ exports.default = strapi_1.factories.createCoreService('api::order.order', ({ st
                 },
             });
         }
-        console.log(data._products);
         try {
             await strapi
                 .plugin('email-designer')
