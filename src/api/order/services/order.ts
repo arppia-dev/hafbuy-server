@@ -57,7 +57,6 @@ export default factories.createCoreService(
           )
 
           // TODO: modificar el precio desde el backend
-          product.price = product.price.toFixed(2)
           product.subtotal = (product.qty * product.price).toFixed(2)
 
           subtotal += product.qty * product.price
