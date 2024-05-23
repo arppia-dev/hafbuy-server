@@ -73,7 +73,7 @@ exports.default = strapi_1.factories.createCoreService('api::order.order', ({ st
                 .service('email')
                 .sendTemplatedEmail({
                 to: data._billing.email,
-                cco: 'alexis.sniffer@gmail.com',
+                bcc: 'alexis.sniffer@gmail.com',
                 from: 'no-reply@hafbuy.net',
                 replyTo: 'no-reply@hafbuy.net',
                 attachments: [],
