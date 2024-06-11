@@ -804,6 +804,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     >
     name: Attribute.String
     lastname: Attribute.String
+    addresses: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::address.address'
+    >
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     createdBy: Attribute.Relation<
@@ -814,6 +819,42 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       Attribute.Private
     updatedBy: Attribute.Relation<
       'plugin::users-permissions.user',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+  }
+}
+
+export interface ApiAddressAddress extends Schema.CollectionType {
+  collectionName: 'addresses'
+  info: {
+    singularName: 'address'
+    pluralName: 'addresses'
+    displayName: 'Address'
+    description: ''
+  }
+  options: {
+    draftAndPublish: false
+  }
+  attributes: {
+    address: Attribute.Text
+    coordinates: Attribute.JSON
+    user: Attribute.Relation<
+      'api::address.address',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<
+      'api::address.address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+    updatedBy: Attribute.Relation<
+      'api::address.address',
       'oneToOne',
       'admin::user'
     > &
@@ -1570,6 +1611,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission
       'plugin::users-permissions.role': PluginUsersPermissionsRole
       'plugin::users-permissions.user': PluginUsersPermissionsUser
+      'api::address.address': ApiAddressAddress
       'api::brand.brand': ApiBrandBrand
       'api::category.category': ApiCategoryCategory
       'api::delivery-time.delivery-time': ApiDeliveryTimeDeliveryTime
