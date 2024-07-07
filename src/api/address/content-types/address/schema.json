@@ -13,7 +13,9 @@
   "pluginOptions": {},
   "attributes": {
     "address": {
-      "type": "text"
+      "type": "text",
+      "maxLength": 100,
+      "required": true
     },
     "coordinates": {
       "type": "json",

@@ -838,7 +838,11 @@ export interface ApiAddressAddress extends Schema.CollectionType {
     draftAndPublish: false
   }
   attributes: {
-    address: Attribute.Text
+    address: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 100
+      }>
     coordinates: Attribute.JSON
     user: Attribute.Relation<
       'api::address.address',
