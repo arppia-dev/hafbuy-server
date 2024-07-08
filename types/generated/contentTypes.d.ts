@@ -838,7 +838,23 @@ export interface ApiAddressAddress extends Schema.CollectionType {
     draftAndPublish: false
   }
   attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20
+      }>
+    lastname: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20
+      }>
     address: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 200
+      }>
+    phone: Attribute.Integer & Attribute.Required
+    email: Attribute.Email &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
         maxLength: 100
