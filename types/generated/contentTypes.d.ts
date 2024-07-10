@@ -1416,6 +1416,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
         }
       }>
     stock: Attribute.Integer &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false
@@ -1423,7 +1424,8 @@ export interface ApiProductProduct extends Schema.CollectionType {
       }> &
       Attribute.SetMinMax<{
         min: 0
-      }>
+      }> &
+      Attribute.DefaultTo<0>
     ratings: Attribute.Integer &
       Attribute.Required &
       Attribute.SetPluginOptions<{

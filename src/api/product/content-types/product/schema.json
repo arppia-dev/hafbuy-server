@@ -24,8 +24,7 @@
       },
       "type": "string",
       "required": true,
-      "maxLength": 100,
-      "regex": "^[A-Za-z0-9\\s\\-_]+$"
+      "maxLength": 100
     },
     "slug": {
       "pluginOptions": {
@@ -108,8 +107,9 @@
         }
       },
       "type": "integer",
-      "required": false,
-      "min": 0
+      "required": true,
+      "min": 0,
+      "default": 0
     },
     "ratings": {
       "pluginOptions": {

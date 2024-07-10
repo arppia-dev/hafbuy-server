@@ -15,9 +15,11 @@ export interface VariantsVariants extends Schema.Component {
       Attribute.DefaultTo<false>
     until: Attribute.DateTime
     stock: Attribute.Integer &
+      Attribute.Required &
       Attribute.SetMinMax<{
         min: 0
-      }>
+      }> &
+      Attribute.DefaultTo<0>
     variant: Attribute.Component<'variants.variation', true>
   }
 }
