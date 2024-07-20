@@ -1060,6 +1060,37 @@ export interface ApiDeliveryTimeDeliveryTime extends Schema.CollectionType {
   }
 }
 
+export interface ApiHomePageHomePage extends Schema.SingleType {
+  collectionName: 'home_pages'
+  info: {
+    singularName: 'home-page'
+    pluralName: 'home-pages'
+    displayName: 'HomePage'
+    description: ''
+  }
+  options: {
+    draftAndPublish: true
+  }
+  attributes: {
+    carousel: Attribute.Component<'global.carousel'>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<
+      'api::home-page.home-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+    updatedBy: Attribute.Relation<
+      'api::home-page.home-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+  }
+}
+
 export interface ApiOrderOrder extends Schema.CollectionType {
   collectionName: 'orders'
   info: {
@@ -1637,6 +1668,7 @@ declare module '@strapi/types' {
       'api::brand.brand': ApiBrandBrand
       'api::category.category': ApiCategoryCategory
       'api::delivery-time.delivery-time': ApiDeliveryTimeDeliveryTime
+      'api::home-page.home-page': ApiHomePageHomePage
       'api::order.order': ApiOrderOrder
       'api::order-billing.order-billing': ApiOrderBillingOrderBilling
       'api::order-payment.order-payment': ApiOrderPaymentOrderPayment

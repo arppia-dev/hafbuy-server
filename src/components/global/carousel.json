@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_global_carousels",
+  "info": {
+    "displayName": "carousel",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sliders": {
+      "displayName": "slide",
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.slide"
+    }
+  }
+}
