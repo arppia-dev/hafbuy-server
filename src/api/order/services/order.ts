@@ -16,6 +16,7 @@ export default factories.createCoreService(
           order: `${Date.now()}`,
           status: 'pending',
           date: new Date(Date.now()).toISOString(),
+          user: data._user ?? null,
         },
       })
 
