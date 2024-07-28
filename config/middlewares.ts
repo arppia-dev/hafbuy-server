@@ -17,6 +17,7 @@ export default [
             'market-assets.strapi.io',
             's3.amazonaws.com',
             'cdn.jsdelivr.net',
+            'https://hafbuy-strapi-space.nyc3.digitaloceanspaces.com',
             'https://hafbuy-strapi-space.nyc3.cdn.digitaloceanspaces.com',
           ],
           'media-src': [
@@ -24,6 +25,7 @@ export default [
             'data:',
             'blob:',
             'market-assets.strapi.io',
+            'https://hafbuy-strapi-space.nyc3.digitaloceanspaces.com',
             'https://hafbuy-strapi-space.nyc3.cdn.digitaloceanspaces.com',
           ],
           upgradeInsecureRequests: null,
