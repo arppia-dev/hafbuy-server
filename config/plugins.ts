@@ -3,13 +3,15 @@ module.exports = ({ env }) => ({
     config: {
       provider: 'aws-s3',
       providerOptions: {
+        baseUrl: env('DO_SPACE_BASE_URL'),
+        rootPath: env('DO_SPACE_ROOT_PATH'),
         s3Options: {
-          endpoint: env('DO_SPACE_ENDPOINT'),
-          region: env('DO_SPACE_REGION'),
           credentials: {
             accessKeyId: env('DO_SPACE_ACCESS_KEY'),
             secretAccessKey: env('DO_SPACE_SECRET_KEY'),
           },
+          region: env('DO_SPACE_REGION'),
+          endpoint: env('DO_SPACE_ENDPOINT'),
           params: {
             ACL: env('AWS_ACL', 'public-read'),
             signedUrlExpires: env('AWS_SIGNED_URL_EXPIRES', 15 * 60),
