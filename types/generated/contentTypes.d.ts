@@ -943,9 +943,6 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
         i18n: {
           localized: true
         }
-      }> &
-      Attribute.SetMinMaxLength<{
-        maxLength: 15
       }>
     slug: Attribute.UID<'api::category.category', 'name'> &
       Attribute.Required &
@@ -953,9 +950,6 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
         i18n: {
           localized: true
         }
-      }> &
-      Attribute.SetMinMaxLength<{
-        maxLength: 20
       }>
     thumbnail: Attribute.Media &
       Attribute.SetPluginOptions<{
