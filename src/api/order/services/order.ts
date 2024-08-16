@@ -62,6 +62,61 @@ export default factories.createCoreService(
 
           subtotal += product.qty * product.price
           itbms += product.qty * product.price * 0.07
+
+          // stock
+          const productStock = await strapi.entityService.findOne(
+            'api::product.product',
+            product.id,
+            {
+              populate: { variants: true },
+            }
+          )
+
+          if (productStock) {
+            let updatedProductStock = productStock.stock
+
+            if (product.variant && productStock.variants) {
+              const variant = productStock.variants.find(
+                (variant: any) => variant.id === product.variant.id
+              )
+
+              if (variant) {
+                variant.stock -= product.qty
+                updatedProductStock = productStock.variants.reduce(
+                  (acc, variant) => acc + variant.stock,
+                  0
+                )
+
+                await strapi.entityService.update(
+                  'api::product.product',
+                  product.id,
+                  {
+                    data: {
+                      stock: updatedProductStock,
+                      variants: productStock.variants.map((variant) =>
+                        variant.id === product.variant.id
+                          ? { ...variant, stock: variant.stock }
+                          : variant
+                      ),
+                    },
+                  }
+                )
+              }
+            } else {
+              updatedProductStock -= product.qty
+
+              await strapi.entityService.update(
+                'api::product.product',
+                product.id,
+                {
+                  data: {
+                    stock: updatedProductStock,
+                  },
+                }
+              )
+            }
+          }
+          // fin stock
         }
 
         total = subtotal + itbms
