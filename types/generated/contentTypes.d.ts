@@ -1352,6 +1352,36 @@ export interface ApiPaymentMethodPaymentMethod extends Schema.CollectionType {
   }
 }
 
+export interface ApiPoliciesPagePoliciesPage extends Schema.SingleType {
+  collectionName: 'policies_pages'
+  info: {
+    singularName: 'policies-page'
+    pluralName: 'policies-pages'
+    displayName: 'PoliciesPage'
+  }
+  options: {
+    draftAndPublish: true
+  }
+  attributes: {
+    policies: Attribute.Blocks
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<
+      'api::policies-page.policies-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+    updatedBy: Attribute.Relation<
+      'api::policies-page.policies-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+  }
+}
+
 export interface ApiProductProduct extends Schema.CollectionType {
   collectionName: 'products'
   info: {
@@ -1592,6 +1622,53 @@ export interface ApiServiceService extends Schema.CollectionType {
   }
 }
 
+export interface ApiTermsPageTermsPage extends Schema.SingleType {
+  collectionName: 'terms_pages'
+  info: {
+    singularName: 'terms-page'
+    pluralName: 'terms-pages'
+    displayName: 'TermsPage'
+    description: ''
+  }
+  options: {
+    draftAndPublish: true
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    terms: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<
+      'api::terms-page.terms-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+    updatedBy: Attribute.Relation<
+      'api::terms-page.terms-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+    localizations: Attribute.Relation<
+      'api::terms-page.terms-page',
+      'oneToMany',
+      'api::terms-page.terms-page'
+    >
+    locale: Attribute.String
+  }
+}
+
 export interface ApiVariantTypeVariantType extends Schema.CollectionType {
   collectionName: 'variant_types'
   info: {
@@ -1668,8 +1745,10 @@ declare module '@strapi/types' {
       'api::order-payment.order-payment': ApiOrderPaymentOrderPayment
       'api::order-product.order-product': ApiOrderProductOrderProduct
       'api::payment-method.payment-method': ApiPaymentMethodPaymentMethod
+      'api::policies-page.policies-page': ApiPoliciesPagePoliciesPage
       'api::product.product': ApiProductProduct
       'api::service.service': ApiServiceService
+      'api::terms-page.terms-page': ApiTermsPageTermsPage
       'api::variant-type.variant-type': ApiVariantTypeVariantType
     }
   }

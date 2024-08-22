@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "policies_pages",
+  "info": {
+    "singularName": "policies-page",
+    "pluralName": "policies-pages",
+    "displayName": "PoliciesPage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "policies": {
+      "type": "blocks"
+    }
+  }
+}
