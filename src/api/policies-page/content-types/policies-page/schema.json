@@ -4,15 +4,25 @@
   "info": {
     "singularName": "policies-page",
     "pluralName": "policies-pages",
-    "displayName": "PoliciesPage"
+    "displayName": "PoliciesPage",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "policies": {
-      "type": "blocks"
+      "type": "blocks",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }
