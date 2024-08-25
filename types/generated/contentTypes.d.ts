@@ -1085,6 +1085,37 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
   }
 }
 
+export interface ApiNewsletterNewsletter extends Schema.CollectionType {
+  collectionName: 'newsletters'
+  info: {
+    singularName: 'newsletter'
+    pluralName: 'newsletters'
+    displayName: 'Newsletter'
+    description: ''
+  }
+  options: {
+    draftAndPublish: false
+  }
+  attributes: {
+    email: Attribute.Email & Attribute.Required & Attribute.Unique
+    active: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<
+      'api::newsletter.newsletter',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+    updatedBy: Attribute.Relation<
+      'api::newsletter.newsletter',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+  }
+}
+
 export interface ApiOrderOrder extends Schema.CollectionType {
   collectionName: 'orders'
   info: {
@@ -1757,6 +1788,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory
       'api::delivery-time.delivery-time': ApiDeliveryTimeDeliveryTime
       'api::home-page.home-page': ApiHomePageHomePage
+      'api::newsletter.newsletter': ApiNewsletterNewsletter
       'api::order.order': ApiOrderOrder
       'api::order-billing.order-billing': ApiOrderBillingOrderBilling
       'api::order-payment.order-payment': ApiOrderPaymentOrderPayment
