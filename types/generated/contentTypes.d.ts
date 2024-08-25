@@ -1566,6 +1566,11 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'oneToMany',
       'api::order-product.order-product'
     >
+    reviews: Attribute.Relation<
+      'api::product.product',
+      'oneToMany',
+      'api::review.review'
+    >
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1587,6 +1592,57 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'api::product.product'
     >
     locale: Attribute.String
+  }
+}
+
+export interface ApiReviewReview extends Schema.CollectionType {
+  collectionName: 'reviews'
+  info: {
+    singularName: 'review'
+    pluralName: 'reviews'
+    displayName: 'Review'
+    description: ''
+  }
+  options: {
+    draftAndPublish: true
+  }
+  attributes: {
+    rating: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 1
+        max: 5
+      }>
+    comment: Attribute.Blocks & Attribute.Required
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 50
+      }>
+    email: Attribute.Email &
+      Attribute.SetMinMaxLength<{
+        maxLength: 100
+      }>
+    product: Attribute.Relation<
+      'api::review.review',
+      'manyToOne',
+      'api::product.product'
+    >
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+    updatedBy: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
   }
 }
 
@@ -1796,6 +1852,7 @@ declare module '@strapi/types' {
       'api::payment-method.payment-method': ApiPaymentMethodPaymentMethod
       'api::policies-page.policies-page': ApiPoliciesPagePoliciesPage
       'api::product.product': ApiProductProduct
+      'api::review.review': ApiReviewReview
       'api::service.service': ApiServiceService
       'api::terms-page.terms-page': ApiTermsPageTermsPage
       'api::variant-type.variant-type': ApiVariantTypeVariantType
