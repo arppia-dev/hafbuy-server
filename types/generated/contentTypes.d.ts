@@ -1613,7 +1613,6 @@ export interface ApiReviewReview extends Schema.CollectionType {
         min: 1
         max: 5
       }>
-    comment: Attribute.Blocks & Attribute.Required
     name: Attribute.String &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
@@ -1628,6 +1627,11 @@ export interface ApiReviewReview extends Schema.CollectionType {
       'manyToOne',
       'api::product.product'
     >
+    comment: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 200
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime

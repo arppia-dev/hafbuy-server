@@ -18,10 +18,6 @@
       "max": 5,
       "min": 1
     },
-    "comment": {
-      "type": "blocks",
-      "required": true
-    },
     "name": {
       "type": "string",
       "required": true,
@@ -36,6 +32,11 @@
       "relation": "manyToOne",
       "target": "api::product.product",
       "inversedBy": "reviews"
+    },
+    "comment": {
+      "type": "text",
+      "required": true,
+      "maxLength": 200
     }
   }
 }
