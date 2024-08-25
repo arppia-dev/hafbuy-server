@@ -1632,6 +1632,11 @@ export interface ApiReviewReview extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         maxLength: 200
       }>
+    user: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
