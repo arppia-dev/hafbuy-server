@@ -35,14 +35,6 @@
       "default": false,
       "required": true
     },
-    "description": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "richtext"
-    },
     "order_payments": {
       "type": "relation",
       "relation": "oneToMany",
