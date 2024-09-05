@@ -1348,6 +1348,12 @@ export interface ApiPaymentMethodPaymentMethod extends Schema.CollectionType {
         }
       }> &
       Attribute.DefaultTo<false>
+    description: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     order_payments: Attribute.Relation<
       'api::payment-method.payment-method',
       'oneToMany',
