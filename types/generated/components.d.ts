@@ -38,6 +38,20 @@ export interface GlobalCarousel extends Schema.Component {
   }
 }
 
+export interface GlobalResponsiveImage extends Schema.Component {
+  collectionName: 'components_global_responsive_images'
+  info: {
+    displayName: 'ResponsiveImage'
+    description: ''
+  }
+  attributes: {
+    xs: Attribute.Component<'blocks.slide', true>
+    sm: Attribute.Component<'blocks.slide', true>
+    md: Attribute.Component<'blocks.slide', true>
+    lg: Attribute.Component<'blocks.slide', true>
+  }
+}
+
 export interface VariantsVariants extends Schema.Component {
   collectionName: 'components_variants_variants'
   info: {
@@ -84,6 +98,7 @@ declare module '@strapi/types' {
       'blocks.link': BlocksLink
       'blocks.slide': BlocksSlide
       'global.carousel': GlobalCarousel
+      'global.responsive-image': GlobalResponsiveImage
       'variants.variants': VariantsVariants
       'variants.variation': VariantsVariation
     }

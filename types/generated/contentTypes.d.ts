@@ -1066,7 +1066,15 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
     draftAndPublish: true
   }
   attributes: {
-    carousel: Attribute.Component<'global.carousel'>
+    carousel: Attribute.Component<'global.responsive-image'>
+    advertising1: Attribute.Component<'global.responsive-image'>
+    advertising2: Attribute.Component<'global.responsive-image'>
+    advertising3: Attribute.Component<'global.responsive-image'>
+    advertising4: Attribute.Component<'global.responsive-image'>
+    advertising5: Attribute.Component<'global.responsive-image'>
+    advertising6: Attribute.Component<'global.responsive-image'>
+    advertising7: Attribute.Component<'global.responsive-image'>
+    advertising8: Attribute.Component<'global.responsive-image'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
